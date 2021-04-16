@@ -5,17 +5,11 @@ from saf_vectorizers.utils import load_vocab, convert_by_vocab, convert_to_unico
 
 
 class BasicTokenizer:
-    """Runs basic tokenization (punctuation splitting, lower casing, etc.)."""
 
     def __init__(self, do_lower_case=True):
-        """Constructs a BasicTokenizer.
-        Args:
-          do_lower_case: Whether to lower case the input.
-        """
         self.do_lower_case = do_lower_case
 
     def tokenize(self, text):
-        """Tokenizes a piece of text."""
         text = convert_to_unicode(text)
         text = self._clean_text(text)
 
@@ -39,7 +33,6 @@ class BasicTokenizer:
         return output_tokens
 
     def _run_strip_accents(self, text):
-        """Strips accents from a piece of text."""
         text = unicodedata.normalize("NFD", text)
         output = []
         for char in text:
@@ -50,7 +43,6 @@ class BasicTokenizer:
         return "".join(output)
 
     def _run_split_on_punc(self, text):
-        """Splits punctuation on a piece of text."""
         chars = list(text)
         i = 0
         start_new_word = True
@@ -70,7 +62,6 @@ class BasicTokenizer:
         return ["".join(x) for x in output]
 
     def _tokenize_chinese_chars(self, text):
-        """Adds whitespace around any CJK character."""
         output = []
         for char in text:
             cp = ord(char)
@@ -83,15 +74,6 @@ class BasicTokenizer:
         return "".join(output)
 
     def _is_chinese_char(self, cp):
-        """Checks whether CP is the codepoint of a CJK character."""
-        # This defines a "chinese character" as anything in the CJK Unicode block:
-        #   https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_(Unicode_block)
-        #
-        # Note that the CJK Unicode block is NOT all Japanese and Korean characters,
-        # despite its name. The modern Korean Hangul alphabet is a different block,
-        # as is Japanese Hiragana and Katakana. Those alphabets are used to write
-        # space-separated words, so they are not treated specially and handled
-        # like the all of the other languages.
         if ((cp >= 0x4E00 and cp <= 0x9FFF) or  #
                 (cp >= 0x3400 and cp <= 0x4DBF) or  #
                 (cp >= 0x20000 and cp <= 0x2A6DF) or  #
@@ -105,7 +87,6 @@ class BasicTokenizer:
         return False
 
     def _clean_text(self, text):
-        """Performs invalid character removal and whitespace cleanup on text."""
         output = []
         for char in text:
             cp = ord(char)
@@ -119,7 +100,6 @@ class BasicTokenizer:
 
 
 class WordpieceTokenizer:
-    """Runs WordPiece tokenziation."""
 
     def __init__(self, vocab, unk_token="[UNK]", max_input_chars_per_word=100):
         self.vocab = vocab
@@ -127,19 +107,6 @@ class WordpieceTokenizer:
         self.max_input_chars_per_word = max_input_chars_per_word
 
     def tokenize(self, text):
-        """Tokenizes a piece of text into its word pieces.
-        This uses a greedy longest-match-first algorithm to perform tokenization
-        using the given vocabulary.
-        For example:
-          input = "unaffable"
-          output = ["un", "##aff", "##able"]
-        Args:
-          text: A single token or whitespace separated tokens. This should have
-            already been passed through `BasicTokenizer.
-        Returns:
-          A list of wordpiece tokens.
-        """
-
         text = convert_to_unicode(text)
 
         output_tokens = []
@@ -176,8 +143,7 @@ class WordpieceTokenizer:
         return output_tokens
 
 
-class FullTokenizer(object):
-    """Runs end-to-end tokenziation."""
+class FullTokenizer:
 
     def __init__(self, vocab_file, do_lower_case=True):
         self.vocab = load_vocab(vocab_file)
