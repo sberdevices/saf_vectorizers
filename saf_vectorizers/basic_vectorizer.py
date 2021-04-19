@@ -14,12 +14,15 @@ class Vectorizer(ABC):
 
     VECTORIZER_TYPE = None
     MODEL_NAME = None
+    # По дефолту модель принимает оригинальный текст как есть, без изменений, лемматизация не нужна
+    USE_NORMALIZED_TEXT = False
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
         self.settings = settings if settings else {}
         vectorizer_type = self.settings.get("type")
         if vectorizer_type:
             self._check_vectorizer_type(vectorizer_type)
+        self.use_normalized_text = self.settings.get("use_normalized_text", self.USE_NORMALIZED_TEXT)
         self.model = self.load_model(os.path.join(PRETRAINED_MODELS_PATH, self.MODEL_NAME))
 
     def _check_vectorizer_type(self, vectorizer_type: str) -> None:

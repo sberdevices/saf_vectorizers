@@ -14,12 +14,9 @@ class USEVectorizer(Vectorizer):
     MODEL_NAME = "universal_sentence_encoder"
     # Размер ембеддинг вектора предобученной модели
     EMBEDDING_SIZE = 512
-    # По дефолту модель принимает оригинальный текст как есть, без изменений, лемматизация не нужна
-    USE_NORMALIZED_TEXT = False
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
         super(USEVectorizer, self).__init__(settings)
-        self.use_normalized_text = self.settings.get("use_normalized_text", self.USE_NORMALIZED_TEXT)
         self.session = self._get_session()
 
     def load_model(self, model_path: str) -> Any:
