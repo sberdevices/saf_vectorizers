@@ -13,7 +13,8 @@ setup(
     include_package_data=True,
     install_requires=[
         "smart_app_framework",
-        "gdown==3.12.2"
+        "gdown==3.12.2",
+        "gensim==4.0.1"
     ],
     classifiers=[
         "Programming Language :: Python :: 3.6",

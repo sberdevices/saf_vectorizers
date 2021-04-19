@@ -13,20 +13,17 @@ from saf_vectorizers.utils import compute_input_array
 class SBERTVectorizer(Vectorizer):
 
     VECTORIZER_TYPE = "sbert"
-    MODEL_NAME = "sbert.graphdef"
+    MODEL_NAME = "sbert/sbert.graphdef"
     # Размер ембеддинг вектора предобученной модели
     EMBEDDING_SIZE = 1024
     # Количество сегментов т.е. максимальная длина обрабатываемой последовательности (24 токена),
     # это параметр был использован при обучении SBERT, является контстантой
     MAX_SEQ_LEN = 24
-    SBERT_VOCAB_PATH = os.path.join(PRETRAINED_MODELS_PATH, "sbert_vocab.txt")
-    # По дефолту модель принимает оригинальный текст как есть, без изменений, лемматизация не нужна
-    USE_NORMALIZED_TEXT = False
+    SBERT_VOCAB_PATH = os.path.join(PRETRAINED_MODELS_PATH, "sbert/sbert_vocab.txt")
     OUTPUT_TO_USE = "sentence"
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
         super(SBERTVectorizer, self).__init__(settings)
-        self.use_normalized_text = self.settings.get("use_normalized_text", self.USE_NORMALIZED_TEXT)
         self.output_to_use = self.settings.get("output_to_use", self.OUTPUT_TO_USE)
         self.restored_graph, self.tf_session = self.model
         self.tokenizer = FullTokenizer(vocab_file=self.SBERT_VOCAB_PATH, do_lower_case=False)
