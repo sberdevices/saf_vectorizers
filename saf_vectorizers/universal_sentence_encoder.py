@@ -9,6 +9,7 @@ from saf_vectorizers.basic_vectorizer import Vectorizer
 
 
 class USEVectorizer(Vectorizer):
+    """USE (Universal Sentence Encoder) векторизатор."""
 
     VECTORIZER_TYPE = "use"
     MODEL_NAME = "universal_sentence_encoder"

@@ -11,6 +11,7 @@ from saf_vectorizers.utils import compute_input_array
 
 
 class SBERTVectorizer(Vectorizer):
+    """SBERT (SentenceBERT) векторизатор."""
 
     VECTORIZER_TYPE = "sbert"
     MODEL_NAME = "sbert/sbert.graphdef"

@@ -1,9 +1,16 @@
+"""
+Данный скрипт находится здесь лишь для быстрой локальной проверки и демонстрации работоспособности всех векторизаторов,
+и никак не используется в smart_app_framework.
+Скрипт оставлен для наглядности и поможет замерить время загрузки и инференса каждого из векторизаторов.
+"""
+
 import time
 
 from core.text_preprocessing.preprocessing_result import TextPreprocessingResult
 
 from saf_vectorizers import vectorizer_factory, VECTORIZERS
 
+# Пример объекта, который поступает на вход в метод vectorize
 PREPROCESSED_TEXT = TextPreprocessingResult(
         {
             "original_text": "хочу узнать прогноз погоды на завтра в москве",

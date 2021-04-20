@@ -8,6 +8,7 @@ from saf_vectorizers.basic_vectorizer import Vectorizer
 
 
 class FastTextVectorizer(Vectorizer):
+    """FastText векторизатор."""
 
     VECTORIZER_TYPE = "fasttext"
     MODEL_NAME = "fasttext/fasttext.bin"

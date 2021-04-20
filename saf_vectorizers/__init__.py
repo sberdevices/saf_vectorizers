@@ -6,6 +6,7 @@ from saf_vectorizers.sbert import SBERTVectorizer
 from saf_vectorizers.universal_sentence_encoder import USEVectorizer
 from saf_vectorizers.word2vec import Word2VecVectorizer
 
+# Словарь содержит все типы (ключи) всех классов-наследников (значения) базового класса Vectorizer
 VECTORIZERS = {cls.VECTORIZER_TYPE: cls for cls in Vectorizer.__subclasses__()}
 
 
@@ -18,6 +19,9 @@ def vectorizer_factory(vectorizer_type: str, *args, **kwargs) -> Vectorizer:
 
 
 def on_startup(app_config, manager) -> None:
+    """Функция вызывается в smart_app_framework в методе activate_plugins в момент инициализации смартаппа,
+    и выполняет регистрацию и загрузку всех векторизаторов.
+    """
     saf_vectorizers["fasttext"] = FastTextVectorizer()
     saf_vectorizers["sbert"] = SBERTVectorizer()
     saf_vectorizers["use"] = USEVectorizer()

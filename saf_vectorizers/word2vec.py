@@ -8,6 +8,7 @@ from saf_vectorizers.basic_vectorizer import Vectorizer
 
 
 class Word2VecVectorizer(Vectorizer):
+    """Word2Vec векторизатор."""
 
     VECTORIZER_TYPE = "word2vec"
     MODEL_NAME = "word2vec/model.bin"

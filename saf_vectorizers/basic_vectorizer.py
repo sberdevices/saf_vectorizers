@@ -11,10 +11,11 @@ PRETRAINED_MODELS_PATH = os.path.join(PROJECT_ROOT_PATH, "static")
 
 
 class Vectorizer(ABC):
+    """Базовый класс для сущности Векторизатор."""
 
     VECTORIZER_TYPE = None
     MODEL_NAME = None
-    # По дефолту модель принимает оригинальный текст как есть, без изменений, лемматизация не нужна
+    # По дефолту все нейросетевые модели работают с оригинальным текстом как есть, лемматизация не осуществлялась
     USE_NORMALIZED_TEXT = False
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
@@ -31,13 +32,16 @@ class Vectorizer(ABC):
 
     @abstractmethod
     def load_model(self, model_path: str) -> Any:
+        """Метод осуществляет загрузку предобученной модели."""
         raise NotImplementedError
 
     @abstractmethod
     def vectorize(self, text_preprocessing_result: TextPreprocessingResult) -> np.ndarray:
+        """Метод осуществляет векторизацию текстовой реплики."""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def size(self) -> int:
+        """Метод возвращает размер embedding'а, т.е длину вектора."""
         raise NotImplementedError
