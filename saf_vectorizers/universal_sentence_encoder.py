@@ -41,26 +41,3 @@ class USEVectorizer(Vectorizer):
         texts = [text]
         vector = self.session.run(self.model(texts))
         return vector
-
-
-# TODO: Код оставлен для отладки и демонстрации работоспособности, позже удалить
-if __name__ == "__main__":
-    import time
-    text_pr_result = TextPreprocessingResult(
-        {"original_text": "хочу узнать прогноз погоды на завтра в москве",
-         "normalized_text": "хотеть узнать прогноз погода на завтра москва ."}
-    )
-    print("Model initialisation...")
-    start = time.time()
-    use_vectorizer = USEVectorizer()
-    end = time.time()
-    print(f"Elapsed time on INITIALISATION is {end - start}")
-    print("Start inference...")
-    infer_start = time.time()
-    emedding_vector = use_vectorizer.vectorize(text_pr_result)
-    infer_end = time.time()
-    print(f"Elapsed time on INFER is {infer_end - infer_start}")
-    print("*** Result: ***")
-    print(emedding_vector)
-    print(emedding_vector.shape)
-    print(use_vectorizer.size)

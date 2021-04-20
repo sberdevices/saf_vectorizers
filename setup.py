@@ -13,6 +13,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "smart_app_framework",
+        "fasttext==0.9.2",
         "gdown==3.12.2",
         "gensim==4.0.1"
     ],
