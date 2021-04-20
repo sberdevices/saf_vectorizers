@@ -1,0 +1,5 @@
+recursive-include saf_vectorizers/static/fasttext *.bin
+recursive-include saf_vectorizers/static/sbert *.graphdef
+recursive-include saf_vectorizers/static/sbert *.txt
+recursive-include saf_vectorizers/static/universal_sentence_encoder *
+recursive-include saf_vectorizers/static/word2vec *.bin
