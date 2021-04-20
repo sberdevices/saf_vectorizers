@@ -1,4 +1,4 @@
-from core.basic_models.сlassifiers.vectorizer_models import vectorizers as saf_vectorizers
+from core.basic_models.classifiers.vectorizer_models import vectorizers as saf_vectorizers
 
 from saf_vectorizers.basic_vectorizer import Vectorizer
 from saf_vectorizers.fasttext_vect import FastTextVectorizer
