@@ -30,6 +30,14 @@ if [ ! -d word2vec ]; then
     unzip word2vec.zip -d word2vec
 fi
 
+echo "## Looking for FastText files..."
+if [ ! -d fasttext ]; then
+    echo "## Downloading FastText embeddings and unpacking it..."
+    curl -L https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.ru.300.bin.gz > fasttext.bin.gz
+    mkdir -p fasttext
+    gunzip -c fasttext.bin.gz > ./fasttext/fasttext.bin
+fi
+
 echo "## Static dir contains the following files:"
 echo $(ls)
 echo "## Finish!"
