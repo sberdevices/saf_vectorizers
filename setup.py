@@ -15,7 +15,8 @@ setup(
         "smart_app_framework",
         "fasttext==0.9.2",
         "gdown==3.12.2",
-        "gensim==4.0.1"
+        "gensim==4.0.1",
+        "tensorflow-hub==0.12.0"
     ],
     classifiers=[
         "Programming Language :: Python :: 3.6",
