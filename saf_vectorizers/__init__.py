@@ -4,7 +4,7 @@ from saf_vectorizers.basic_vectorizer import Vectorizer
 from saf_vectorizers.fasttext_vect import FastTextVectorizer
 from saf_vectorizers.sbert import SBERTVectorizer
 from saf_vectorizers.universal_sentence_encoder import USEVectorizer
-from saf_vectorizers.word2vec import Word2VecVectorizer
+from saf_vectorizers.word2vec_vect import Word2VecVectorizer
 
 # Словарь содержит все типы (ключи) всех классов-наследников (значения) базового класса Vectorizer
 VECTORIZERS = {cls.VECTORIZER_TYPE: cls for cls in Vectorizer.__subclasses__()}

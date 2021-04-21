@@ -1,8 +1,8 @@
 from typing import Dict, Any, Optional
 
 import numpy as np
+import word2vec
 from core.text_preprocessing.preprocessing_result import TextPreprocessingResult
-from gensim.models import KeyedVectors
 
 from saf_vectorizers.basic_vectorizer import Vectorizer
 
@@ -11,19 +11,20 @@ class Word2VecVectorizer(Vectorizer):
     """Word2Vec векторизатор."""
 
     VECTORIZER_TYPE = "word2vec"
-    MODEL_NAME = "word2vec/model.bin"
-    BINARY_MOOD = True
+    MODEL_NAME = "word2vec/model.txt"
+    # Размер ембеддинг вектора предобученной модели
+    EMBEDDING_SIZE = 300
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
         super(Word2VecVectorizer, self).__init__(settings)
 
     def load_model(self, model_path: str) -> Any:
-        model = KeyedVectors.load_word2vec_format(model_path, binary=self.BINARY_MOOD)
+        model = word2vec.load(model_path)
         return model
 
     @property
     def size(self) -> int:
-        return self.model.vector_size
+        return self.EMBEDDING_SIZE
 
     def vectorize(self, text_preprocessing_result: TextPreprocessingResult) -> np.ndarray:
         sentence_vec = []
