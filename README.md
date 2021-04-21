@@ -2,13 +2,36 @@
 
 **SAF Vectorizers** - Плагин для SmartApp Framework, осуществляющий векторизацию (получение embedding'ов) 
 текстов с помощью различных моделей:    
-- **SBERT** (SentenceBERT), предобученная русскоязычная модель от SberDevices, которая доступна в 
-open source (подробнее про нее можно почитать [в статье](https://habr.com/en/company/sberdevices/blog/527576/);  
-- **USE** (Universal Sentence Encoder), предобученная мультиязыковая модель (подробности про модель можно 
-найти на [TensorFlow Hub](https://tfhub.dev/google/universal-sentence-encoder/1);  
-- **FastText**, предобученная русскоязычная модель, скачивается 
-с сайта [FastText](https://fasttext.cc/docs/en/crawl-vectors.html);   
-- **Word2Vec**, предобученная русскоязычная модель скачивается [здесь](http://vectors.nlpl.eu/repository).
+
+- **SBERT** (SentenceBERT) предобученная русскоязычная модель от [SberDevices](https://sberdevices.ru), 
+которая доступна в open source (подробнее про нее можно почитать [в статье на habr](
+https://habr.com/en/company/sberdevices/blog/527576/)).
+  
+- **USE** (Universal Sentence Encoder) предобученная мультиязыковая модель (подробности про модель можно 
+найти на [TensorFlow Hub](https://tfhub.dev/google/universal-sentence-encoder/1)). Модель 
+распространяется под лицензией [Apache-2.0](https://opensource.org/licenses/Apache-2.0) и 
+используется в оригинальном виде, без каких-либо изменений. 
+
+- **FastText** предобученная русскоязычная модель, распространяется на условиях лицензии
+ [Creative Commons Attribution-Share-Alike License 3.0](https://creativecommons.org/licenses/by-sa/3.0/). 
+ Модель скачивается с официального сайта [FastText](https://fasttext.cc/docs/en/crawl-vectors.html) и 
+ используется в оригинальном виде, без каких-либо изменений.   
+ Авторами модели являются:
+ ```
+@inproceedings{grave2018learning,
+  title={Learning Word Vectors for 157 Languages},
+  author={Grave, Edouard and Bojanowski, Piotr and Gupta, Prakhar and Joulin, Armand and Mikolov, Tomas},
+  booktitle={Proceedings of the International Conference on Language Resources and Evaluation (LREC 2018)},
+  year={2018}
+}
+```   
+
+- **Word2Vec** предобученная русскоязычная модель, распространяется на условиях лицензии
+ [Creative Commons Attribution (CC-BY)](https://creativecommons.org/licenses/by/4.0/deed.ru). 
+ Модель скачивается с официального сайта [NLPL word embeddings repository](http://vectors.nlpl.eu/repository/) и 
+ используется в оригинальном виде, без каких-либо изменений.   
+ Авторами модели являются [Language Technology Group at the University of Oslo](
+ https://www.mn.uio.no/ifi/english/research/groups/ltg/).
 
 ## Оглавление
    * [Установка](#Установка)
