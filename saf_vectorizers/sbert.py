@@ -6,7 +6,7 @@ import tensorflow as tf
 from core.text_preprocessing.preprocessing_result import TextPreprocessingResult
 
 from saf_vectorizers.basic_vectorizer import Vectorizer, PRETRAINED_MODELS_PATH
-from saf_vectorizers.preprocessing import FullTokenizer
+from saf_vectorizers.tokenizers import FullTokenizer
 from saf_vectorizers.utils import compute_input_array
 
 

@@ -80,7 +80,8 @@ def load_vocab(vocab_file: str) -> Dict[str, int]:
     return vocab
 
 
-def convert_by_vocab(vocab: Union[Dict[str, int], Dict[int, str]], items: Union[str, int]) -> List[Union[str, int]]:
+def convert_by_vocab(
+        vocab: Union[Dict[str, int], Dict[int, str]], items: Union[List[str], List[int]]) -> List[Union[str, int]]:
     return [vocab[item] for item in items]
 
 
