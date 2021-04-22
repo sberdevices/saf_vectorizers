@@ -1,5 +1,11 @@
+import subprocess
+
 from setuptools import find_packages, setup
 
+# До установки проекта должен отработь скрипт, который скачивает все модели в нужные директории (аргумент all).
+# Если нужно, например, скачать только sbert, то замените "all" на "sbert".
+# Если, например, нужны только use и fasttext, то вместо "all" пропишите "use fasttext" и т.д.
+subprocess.call(["sh", "./download_models.sh", "all"])
 
 setup(
     name="saf_vectorizers",

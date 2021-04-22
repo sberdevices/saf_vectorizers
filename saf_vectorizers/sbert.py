@@ -25,12 +25,16 @@ class SBERTVectorizer(Vectorizer):
 
     def __init__(self, settings: Optional[Dict[str, Any]] = None) -> None:
         super(SBERTVectorizer, self).__init__(settings)
-        self.output_to_use = self.settings.get("output_to_use", self.OUTPUT_TO_USE)
-        self.restored_graph, self.tf_session = self.model
-        self.tokenizer = FullTokenizer(vocab_file=self.SBERT_VOCAB_PATH, do_lower_case=False)
-        # Первый запуск BERT'a всегда долгий поэтому выполняется в конструкторе
-        self.x_id, self.x_mask, self.x_seg, self.y1, self.y2 = self._restore_model(self.restored_graph)
-        _ = self._predict([[0] * self.MAX_SEQ_LEN], [[0] * self.MAX_SEQ_LEN], [[0] * self.MAX_SEQ_LEN])
+        if self.model:
+            self.output_to_use = self.settings.get("output_to_use", self.OUTPUT_TO_USE)
+            self.restored_graph, self.tf_session = self.model
+            self.tokenizer = FullTokenizer(vocab_file=self.SBERT_VOCAB_PATH, do_lower_case=False)
+            # Первый запуск BERT'a всегда долгий поэтому выполняется в конструкторе
+            self.x_id, self.x_mask, self.x_seg, self.y1, self.y2 = self._restore_model(self.restored_graph)
+            _ = self._predict([[0] * self.MAX_SEQ_LEN], [[0] * self.MAX_SEQ_LEN], [[0] * self.MAX_SEQ_LEN])
+        else:
+            self.output_to_use, self.restored_graph, self.tf_session, self.tokenizer = None, None, None, None
+            self.x_id, self.x_mask, self.x_seg, self.y1, self.y2 = None, None, None, None, None
 
     @staticmethod
     def _load_graph(frozen_graph_filename: str) -> tf.Graph:
