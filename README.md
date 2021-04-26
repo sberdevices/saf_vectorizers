@@ -33,10 +33,12 @@ https://habr.com/en/company/sberdevices/blog/527576/)).
  Авторами модели являются [Language Technology Group at the University of Oslo](
  https://www.mn.uio.no/ifi/english/research/groups/ltg/).
 
-*Названия типов моделей*: `sbert`, `use`, `fasttext`, `word2vec`
+*Названия типов моделей (используются как аргумент для скрипта на скачивание моделей, а также в конфигах 
+классификаторов в поле "vectorizer")*: `sbert`, `use`, `fasttext`, `word2vec`
 
 ## Оглавление
    * [Установка](#Установка)
+   * [Новый функционал](#Новый_функционал)
    * [Подключение плагина](#Подключение)
    * [Документация](#Документация)
    * [Обратная связь](#Обратная)
@@ -94,10 +96,42 @@ print(res_vector)
 print(res_vector.shape)
 ```
 
+# Новый функционал
+
+Плагин предоставляет следующие сущности:
+- `class FastTextVectorizer`  
+- `class SBERTVectorizer`  
+- `class USEVectorizer`  
+- `class Word2VecVectorizer`  
+
+Каждый из этих классов является векторизатором, который вы можете использовать при обучение своих 
+классификационных моделей, а также во время инференса, чтобы модели на вход приходило уже векторное 
+представление текста. Чтобы получить векторное представление текста вам нужно вызвать у векторизатора 
+метод `vectorize`. Он принимает на вход объект `TextPreprocessingResult` и возвращает вектор как NumPy массив:
+```python
+def vectorize(self, text_preprocessing_result: TextPreprocessingResult) -> np.ndarray:
+```
+
+Пример объекта `TextPreprocessingResult` можно найти здесь: 
+https://github.com/sberdevices/saf_vectorizers/blob/main/saf_vectorizers/check_vectorizers.py
+
 # Подключение плагина
 
 Чтобы подключить плагин, добавьте его имя в переменную `PLUGINS` в app_config вашего смартаппа:  
-`PLUGINS = ["saf_vectorizers"]`
+`PLUGINS = ["saf_vectorizers"]`  
+
+В конфигурации классификатора, модель которого должна принимать на вход уже векторизированную реплику, 
+следует добавить поле `"vectorizer"` с одним из значений (`sbert`, `use`, `fasttext`, `word2vec`) 
+типа модели векторизации, та же что использовалась при обучение модели:
+```json
+{
+    "type": "scikit",
+    "threshold": 0.7,
+    "path": "pretrained_model.pkl",
+    "intents": ["intent_1", "intent_2" ... "intent_n"],
+    "vectorizer": "sbert"
+}
+```
 
 # Документация
 
