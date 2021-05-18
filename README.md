@@ -5,7 +5,9 @@
 
 - **SBERT** (SentenceBERT) предобученная русскоязычная модель от [SberDevices](https://sberdevices.ru), 
 которая доступна в open source (подробнее про нее можно почитать [в статье на habr](
-https://habr.com/en/company/sberdevices/blog/527576/)).
+https://habr.com/en/company/sberdevices/blog/527576/)).  
+Одним из авторов модели является [Александр Абрамов](https://github.com/Ab1992ao), к нему можно обращаться 
+с вопросами и предложениями по модели SBERT. 
   
 - **USE** (Universal Sentence Encoder) предобученная мультиязыковая модель (подробности про модель можно 
 найти на [TensorFlow Hub](https://tfhub.dev/google/universal-sentence-encoder/1)). Модель 
