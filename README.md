@@ -142,4 +142,4 @@ https://github.com/sberdevices/saf_vectorizers/blob/main/saf_vectorizers/check_v
 # Обратная связь
 
 C вопросами и предложениями пишите нам по адресу developer@sberdevices.ru или вступайте 
-в наш Telegram канал - [SmartApp Studio Community](https://t.me/smartapp_studio). 
+в наш Telegram канал - [SmartMarket Community](https://t.me/smartmarket_community). 
