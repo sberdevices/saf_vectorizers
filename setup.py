@@ -20,7 +20,6 @@ setup(
     install_requires=[
         "smart_app_framework",
         "fasttext==0.9.2",
-        "gdown==3.12.2",
         "tensorflow-hub==0.12.0",
         "word2vec==0.11.1"
     ],
